@@ -1,0 +1,66 @@
+<html>
+  <head>
+    <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
+  </head>
+  <body>
+  	   Hello, {{ loggedInUser }} 
+  	   <br />
+  	   	<br />
+  	   	<br />
+		{% if noItemsPresent %}
+                  <b>The category {{ categorySelected }} (Owned by {{ owner }}) has no items in it!!!Please select a different one!!!</b>
+	     	 	<hr><br /><br />
+		 {% endif %}
+             {% if noVotesPresent %}
+			<b>The category {{ categorySelected }} (Owned by {{ owner }}) has no votes in it!!!Please select a different one!!!</b>
+	     	 	<hr><br /><br />
+	       {% endif %}
+	   	{% if option4Selected %}
+			<form action="/resultsPage" method="post">
+	   	{% endif %}	
+	   	{% if option5Selected %}
+	   		<form action="/exportXML" method="post">
+	     {% else %}
+	     		   <form action="/voteItems" method="post">
+	     {% endif %}
+	       {% if noOptionSelected %}
+	       	<b>No category was selected!!!Please select one!!!</b>
+	     	 	<hr><br /><br />
+	       {% endif %}
+		 {% if less_Items %}
+	       	<b>The category {{ categorySelected }} (Owned by {{ owner }}) has less than 2 items!!!Please select a different one!!!</b>
+	     	 	<hr><br /><br />
+	       {% endif %}
+		{% if timeOut %}
+	       	<b>The category {{ categorySelected }} (Owned by {{ owner }}) has expired( {{ expDate }})!!!Please select a different one!!!</b>
+	     	 	<hr><br /><br />
+	       {% endif %}
+  	   	  <p>All Categories are as follows. Please select one:</p>	
+			<table border="1">
+			  <tr>
+        	          <td><b>Category </b></td>
+        	          <td><b>Owner </b></td>
+        	   	  </tr>		
+	   		{% for category in allCategories%}
+			  <tr>
+	        	     <td><input type=radio name=categ value="{{ category.category }}|{{ category.owner }}" /> {{ category.category }}</td>
+			     <td>{{ category.owner }}</td>
+                    </tr>
+    		      {% endfor %}
+                  </table>
+		        <input type=hidden name=loggedInUser value="{{ loggedInUser }}" />
+		        <br />
+	       <div>
+		      <button type="submit" value="submit">Submit</button>
+		   </div>
+		<input type=hidden name=url value="{{ url }}" />
+		<input type=hidden name=url_linktext value="{{ url_linktext }}" />
+	<br /><br /><hr><br /><br />
+		Back to <a href=/>Main Page</a><br />
+    		<a href="{{ url }}">{{ url_linktext }}</a>
+	   </form>
+    <br />
+    <br />
+
+  </body>
+</html>

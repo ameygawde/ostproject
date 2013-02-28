@@ -1,0 +1,41 @@
+<html>
+<head>
+    <link type="text/css" rel="stylesheet" 	href="/stylesheets/main.css" />
+  </head>
+  <body>
+  <form action="/mainMenu" method="post">
+	 Hello,  {{ loggedInUser }} !! <br />
+	 {% if userCategories %}
+  	   	  <p>Following Categories are already existing: </p>	<br />
+	   		<ul>
+	   	   		{% for category in userCategories %}
+	        	 		<li> {{ category.category }} </li> <br />
+    		   		{% endfor %}
+    			</ul>
+		  {% else %}
+			<p>No categories present currently.</p>	<br /><br />
+		  {% endif %}
+	 <hr><br />
+		{% if categoryEmpty %}
+	   	 	<b>Category name cannot be empty!!</b><br /><br />
+		{% endif %}
+		{% if categoryAdded %}
+	   	 	<b>The new Category {{ categoryName }} has been added successfully.</b><br /><br />
+		{% endif %}
+		{% if categoryNotAdded %}
+	   	 	<b>The Category {{ categoryName }} already exists.Can't be added again!!!!</b><br /><br />
+		{% endif %}
+	 To creare a new category, <br /><br />
+	 Enter Category Name : <input type=text name=category > 
+	 <br /><br />
+	<button type="submit" value="Login">Submit</button>
+	<input type=hidden name=loggedInUser value="{{ loggedInUser }}" />
+	<input type=hidden name=choice value="option6" />
+	<input type=hidden name=url value="{{ url }}" />
+	<input type=hidden name=url_linktext value="{{ url_linktext }}" />
+	<br /><br /><hr><br /><br />
+	Back to <a href=/>Main Page</a><br />
+    	<a href="{{ url }}">{{ url_linktext }}</a>
+  </body>
+  </form>
+</html>

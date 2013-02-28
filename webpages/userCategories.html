@@ -1,0 +1,55 @@
+<html>
+  <head>
+    <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
+  </head>
+  <body>
+  	   Hello,   {{ loggedInUser }} !! 
+  	   <br />
+  	   	<br />
+  	   	<br />
+	   	{% if noOptionSelected %}
+			<b>No Category was selected!!!Please select atleast 			one!!</b><br /><br /><hr><br /><br />
+		{% endif %}
+		{% if renameCategory %}
+		   <form action="/renameCategory" method="post">
+            {% endif %}
+		{% if noItems %}
+               <b>No items present currently in category {{ categorySelected }}!!Please select a different one!!!</b>< /br><br /><br /><hr><br /><br />
+		   <form action="/deleteItem" method="post">
+            {% endif %}
+		{% if deleteItem %}
+		   <form action="/deleteItem" method="post">
+            {% endif %}
+		{% if renameItem %}
+		   <form action="/renameItem" method="post">
+            {% endif %}
+            {% if expiryDate %}
+		   <form action="/expiryDate" method="post">
+            {% endif %}
+            {% if deleteCategory %}
+		   <form action="/deleteCategory" method="post">
+		{% else %}
+	   	   <form action="/itemsOfUser" method="post">
+            {% endif %}
+  	   	  <p>Categories created by you as follows. Please select one:</p>	
+	   		{% for category in userCategories %}
+	        	<input type=radio name=categ value="{{ category.category }}" /> {{ category.category }}
+		        <br />
+		        <br />
+    		{% endfor %}
+		        <input type=hidden name=loggedInUser value="{{ loggedInUser }}" />
+		        <br />
+	       <div>
+		      <button type="submit" value="submit">Submit</button>
+		   </div>
+		<input type=hidden name=url value="{{ url }}" />
+		<input type=hidden name=url_linktext value="{{ url_linktext }}" />
+	<br /><br /><hr><br /><br />
+		Back to <a href=/>Main Page</a><br />
+    		<a href="{{ url }}">{{ url_linktext }}</a>
+	   </form>
+    <br />
+    <br />
+
+  </body>
+</html>

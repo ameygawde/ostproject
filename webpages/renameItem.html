@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
+  </head>
+  <body>
+  	   Hello,   {{ loggedInUser }} 
+  	   <br />
+  	   	<br />
+  	   	<br />
+	   	{% if noOptionSelected %}
+			<b>No Item was selected!!!Please select atleast 			one!!</b><br /><br /><hr><br /><br />
+		{% endif %}
+		{% if noItems %}
+			<b>Now there are no items in category {{ categorySelected }}</b><br /><br /><hr><br /><br />
+		{% endif %}
+		   <form action="/renameItemInside" method="post">
+  	   	  <p>Items inside category {{ categorySelected }} as follows. Please select one:</p>	
+	   	{% for item in userItems %}
+	        	<input type=radio name=itemName value="{{ item.item }}" /> {{ item.item }}
+		        <br />
+		        <br />
+    		{% endfor %}
+		        <input type=hidden name=loggedInUser value="{{ loggedInUser }}" />
+	        <input type=hidden name=categorySelected value="{{ categorySelected }}" />
+		        <br />
+	       <div>
+		      <button type="submit" value="submit">Rename</button>
+		   </div>
+		<input type=hidden name=url value="{{ url }}" />
+		<input type=hidden name=url_linktext value="{{ url_linktext }}" />
+	<br /><br /><hr><br /><br />
+		Back to <a href=/>Main Page</a><br />
+    		<a href="{{ url }}">{{ url_linktext }}</a>
+	   </form>
+    <br />
+    <br />
+
+  </body>
+</html>
+

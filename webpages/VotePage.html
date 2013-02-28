@@ -1,0 +1,46 @@
+<html>
+  <head>
+    <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
+  </head>
+  <body>
+  	Hello, {{ loggedInUser }}
+  	<br />
+  	<br />
+  	<br />	
+	<form action="/castVote" method="post">
+	       {% if noItemSelected %}
+	       	<b>No item Selected for voting!!Please choose one of them!!!</b><br/>
+	     	 	<hr>	
+	       {% endif %}
+		 {% if voteCasted %}
+	       	<b>You Voted for {{ selectedItem }} over {{ losingItem }}</b>
+	     	 	<hr>	
+	       {% endif %}
+	       <br />	
+	       <p>Please vote on one of the Items Below:</p>
+	       <br />
+	       <br />
+		 1. <input type=radio name=selectedItem value="{{ item1 }}" /> {{ item1 }}<br /><br />
+		 2. <input type=radio name=selectedItem value="{{ item2 }}" /> {{ item2 }}
+	       <br />
+	       <br />
+	       <input type=hidden name=loggedInUser value="{{ loggedInUser }}" />
+		   <input type=hidden name=owner value="{{ owner }}" />
+		   <input type=hidden name=categorySelected value="{{ categorySelected }}" />
+		   <input type=hidden name=item1 value="{{ item1 }}" />
+		   <input type=hidden name=item2 value="{{ item2 }}" />
+		   <br />
+		   <div>
+		      <button type="submit" value="submit">Vote</button>
+		   </div>
+		   <input type=hidden name=url value="{{ url }}" />
+		   <input type=hidden name=url_linktext value="{{ url_linktext }}" />
+	   </form>
+    <br />
+    <br />
+    <hr><br /><br />
+    Back to <a href=/>Main Page</a><br />
+    <a href="{{ url }}">{{ url_linktext }}</a>
+
+  </body>
+</html>

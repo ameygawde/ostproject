@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
+  </head>
+  <body>
+  		Hello, {{ loggedInUser }} 
+  		<br />
+  		<br />
+  		<br />
+ 		<p> Category Owned By : <b>{{ owner }} </b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Selected Category : <b>{{ categorySelected }} </b></p> 
+   		<table border="1">
+   		   <tr>
+        	     <td><b>ItemName </b></td>
+        	     <td><b>Wins </b></td>
+        	     <td><b>Losses </b></td>
+        	     <td><b>Winning Percent </b></td>
+        	   </tr>
+   		   {% for result in allResults %}
+   			 <tr>
+        	          <td>{{ result.item }} </td>
+        	          <td>{{ result.winCount }} </td>
+        	          <td>{{ result.lossCount }} </td>
+        	          <td>{{ result.winPercent }} </td>	        
+        	       </tr>
+   		   {% endfor %}
+   		</table>
+		<input type=hidden name=url value="{{ url }}" />
+		<input type=hidden name=url_linktext value="{{ url_linktext }}" />
+    <br />
+    <br />
+    <hr><br /><br />
+    Back to <a href=/>Main Page</a><br />
+    <a href="{{ url }}">{{ url_linktext }}</a>
+
+  </body>
+</html>

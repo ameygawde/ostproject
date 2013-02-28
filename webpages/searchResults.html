@@ -1,0 +1,26 @@
+<html>
+<head>
+    <link type="text/css" rel="stylesheet" 	href="/stylesheets/main.css" />
+  </head>
+  <body>
+	 Hello,   {{ loggedInUser }} !! <br /><br/>
+	 You searched for  <b>{{ search }}</b>, <br /><br />
+	 Please find the search results below : <br /><br /><hr><br/><br/>
+       {% if noResults %}
+           No Matching Results Found
+       {% else %}
+		{% for search in searchResults %}
+	        {{ search }}
+		        <br />
+		        <br />
+    		{% endfor %}
+       {% endif %}
+	<input type=hidden name=loggedInUser value="{{ loggedInUser }}" />
+	<input type=hidden name=url value="{{ url }}" />
+	<input type=hidden name=url_linktext value="{{ url_linktext }}" />
+	<br /><br /><hr><br /><br />
+	Back to <a href=/>Main Page</a><br />
+    	<a href="{{ url }}">{{ url_linktext }}</a>
+  </body>
+  </form>
+</html>

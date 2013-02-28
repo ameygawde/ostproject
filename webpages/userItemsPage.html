@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
+  </head>
+  <body>
+  	   Hello, {{ loggedInUser }} <br/><br/>
+	   <form action="/addItem" method="post">
+		  {% if itemAdded %}
+			<b>Item {{ item }} added successfully in the category : {{ categorySelected }}. </b><br /><br/>
+		  {% endif %}
+		  {% if itemEmpty %}
+			<b>Item to be added cannot be empty!!!</b><br /><br/>
+		  {% endif %}
+		  {% if itemAlreadyExists %}
+			<b>This Item already exists.Can't be added again!!!!</b><br /><br/>
+		  {% endif %}
+		  {% if userItems %}
+  	   	  	<p>Following Items are existing in the category : {{ categorySelected }}. </p>	<br />
+	   		<ul>
+	   	   		{% for items in userItems %}
+	        	 		<li> {{ items.item }} </li> <br />
+    		   		{% endfor %}
+    			</ul>
+		  {% else %}
+			<p>No items present currently in the category : {{ categorySelected }}. </p>	<br />
+		  {% endif %}
+    		<hr>
+    	  	<div id=itemName >Add new Item here : <input type=text name=itemName > </div><br />
+    	  	<input type=hidden name=category value="{{ categorySelected }}" />
+    	  	<input type=hidden name=loggedInUser value="{{ loggedInUser }}" />
+    	  	<br />
+	  	<button type="submit" value="submit">Submit</button>
+		<input type=hidden name=url value="{{ url }}" />
+		<input type=hidden name=url_linktext value="{{ url_linktext }}" />
+		<br /><br /><hr><br /><br />
+		Back to <a href=/>Main Page</a><br />
+    		<a href="{{ url }}">{{ url_linktext }}</a>
+	   	</form>
+  </body>
+</html>

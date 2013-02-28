@@ -1,0 +1,46 @@
+<html>
+  <head>
+    <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" /> 
+<link rel="stylesheet" type="text/css" href="/stylesheets/calender.css" />
+<script type="text/javascript" src="/stylesheets/calender.js"></script> 
+  </head>
+  <body>
+  	   Hello,  {{ loggedInUser }} 
+  	   <br />
+  	   	<br />
+  	   	<br />
+            The category name is {{ categorySelected }}
+		 <br /><br />	
+             {% if expiryEmpty %}
+                 <b>Expiry date cannot be empty!!Please select valid date again!!!</b><br/><br/>
+		 {% endif %}
+             {% if noExpiryDate %}
+                 No expiry date has been set up yet for category : {{ categorySelected }}<br/><br/>
+		 {% endif %}	
+             {% if expAlready %}
+                 Expiry date previously set up for category : {{ categorySelected }} is {{ expDate }}<br/><br/>
+		 {% endif %}
+             {% if invalidExpiry %}
+                 <b>Expiry date is invalid!!Its less than today's date Please select valid date again!!!</b><br/><br/>
+		 {% endif %}		
+<hr><br /><br />
+		   <form action="/expiryDateInside" method="post">
+		    Select the expiration date(dd/mm/yyyy in numericals):<br/><br/>	
+            <div><input type="text" name="date" class="tcal" /></div>
+ 		    
+	       <div>
+		      <button type="submit" value="submit">Set up</button>
+		   </div>
+		<input type=hidden name=categ value="{{ categorySelected  }}" />
+		<input type=hidden name=loggedInUser value="{{ loggedInUser }}" />
+		<input type=hidden name=url value="{{ url }}" />
+		<input type=hidden name=url_linktext value="{{ url_linktext }}" />
+	<br /><br /><hr><br /><br />
+		Back to <a href=/>Main Page</a><br />
+    		<a href="{{ url }}">{{ url_linktext }}</a>
+	   </form>
+    <br />
+    <br />
+
+  </body>
+</html>

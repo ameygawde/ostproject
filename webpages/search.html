@@ -1,0 +1,23 @@
+<html>
+<head>
+    <link type="text/css" rel="stylesheet" 	href="/stylesheets/main.css" />
+  </head>
+  <body>
+	 Hello,  {{ loggedInUser }}  <br /><br/>
+		{% if searchEmpty %}
+	   	 	<b>Search field cannot be empty!!</b><br /><br />
+		{% endif %}<hr><br/><br/>
+	      <form action="/search" method="post">
+	 To search, <br /><br />
+	 Enter here : <input type=text name=search > 
+	 <br /><br />
+	<button type="submit" value="submit">Search</button>
+	<input type=hidden name=loggedInUser value="{{ loggedInUser }}" />
+	<input type=hidden name=url value="{{ url }}" />
+	<input type=hidden name=url_linktext value="{{ url_linktext }}" />
+	<br /><br /><hr><br /><br />
+	Back to <a href=/>Main Page</a><br />
+    	<a href="{{ url }}">{{ url_linktext }}</a>
+  </body>
+  </form>
+</html>

@@ -1,0 +1,35 @@
+<html>
+<head>
+    <link type="text/css" rel="stylesheet" 	href="/stylesheets/main.css" />
+  </head>
+  <body>
+  <form action="/mainMenu" method="post">
+		Welcome, {{ user }} <br /><br /><br /><br />
+		{% if noOptionSelected %}
+			<b>No option was selected!!!Please select atleast one!!</b><br /><br />
+		{% endif %}
+		{% if noCategoriesPresent %}
+			<b>No categories present currently!!!Please create some first!!</b><br /><br />
+		{% endif %}
+		{% if imported %}
+                  <b>The category {{ categorySelected }} is imported SuccessFully!!!</b>
+		{% endif %}<hr><br /><br />
+    		Select any one of the options below: <br /><br />
+		<input type=radio name=choice value=option9  />Search <br /><br />
+		<input type=radio name=choice value=option1  />Create a new Category <br /><br />
+		<input type=radio name=choice value=option8  />Edit a Category <br /><br />
+		<input type=radio name=choice value=option2  />Add items to a Category <br /><br />
+		<input type=radio name=choice value=option3  />Vote on a Category<br /><br />
+		<input type=radio name=choice value=option4  />View results of a Category<br /><br />
+		<input type=radio name=choice value=option5  />Export a Category<br /><br />
+		<input type=radio name=choice value=option7  />Import a Category<br /><br />
+		<input type=hidden name=loggedInUser value="{{ user }}" />
+		<input type=hidden name=url value="{{ url }}" />
+		<input type=hidden name=url_linktext value="{{ url_linktext }}" />
+
+		<button type="submit" value="submit">Submit</button>
+		<br /><br /><hr><br /><br />
+    		<a href="{{ url }}">{{ url_linktext }}</a>
+  </form>
+  </body>
+</html>
